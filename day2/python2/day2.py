@@ -68,31 +68,27 @@ def part2(file: str):
     contents = [tuple(line.strip().split(' ')) for line in contents]
     contents = [(other, result) for other, result in contents]
 
-    print(contents)
-
     scores = []
 
     for other, result in contents:
         if mapping.get(result) == 'win':
             scores.append(points.get('win') +
-                          weights.get(hands.get('win', other)))
+                          weights.get(hands.get(('win', other))))
         elif mapping.get(result) == 'draw':
             scores.append(points.get('draw') + weights.get(other))
         else:
             scores.append(points.get('lose') +
-                          weights.get(hands.get('lose', other)))
-    
-    print(scores)
+                          weights.get(hands.get(('lose', other))))
 
     return sum(scores)
 
 
 def main():
-    # print(f"Part 1 (sample): {part1('sample.txt')}")
-    # print(f"Part 1 (input): {part1('input.txt')}")
-    # print()
+    print(f"Part 1 (sample): {part1('sample.txt')}")
+    print(f"Part 1 (input): {part1('input.txt')}")
+    print()
     print(f"Part 2 (sample): {part2('sample.txt')}")
-    # print(f"Part 2 (input): {part2('input.txt')}")
+    print(f"Part 2 (input): {part2('input.txt')}")
 
 
 if __name__ == '__main__':
