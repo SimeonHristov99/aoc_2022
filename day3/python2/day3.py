@@ -27,9 +27,29 @@ def part1(file: str):
     return sum(scores)
 
 
+def part2(file: str):
+    GROUP_SIZE = 3
+
+    with open(file, 'r') as f:
+        lines = f.read().splitlines()
+
+    scores = []
+
+    for i in range(0, len(lines), GROUP_SIZE):
+        group = lines[i: i + GROUP_SIZE]
+        group = map(set, group)
+        common = list(set.intersection(*group))[0]
+        scores.append(get_score(common))
+
+    return sum(scores)
+
+
 def main():
     print(f"Part 1 (sample): {part1('sample.txt')}")
     print(f"Part 1 (input): {part1('input.txt')}")
+    print()
+    print(f"Part 2 (sample): {part2('sample.txt')}")
+    print(f"Part 2 (input): {part2('input.txt')}")
 
 
 if __name__ == '__main__':
