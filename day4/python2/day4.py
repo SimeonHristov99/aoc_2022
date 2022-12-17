@@ -12,6 +12,21 @@ def part1(file: str):
     return overlapping
 
 
+def part2(file: str):
+    with open(file, 'r') as f:
+        lines = f.read().splitlines()
+
+    lines = list(map(lambda x: list(map(lambda y: list(map(int, y.split('-'))), x.split(','))), lines))
+    overlapping = 0
+
+    for [(s1, e1), (s2, e2)] in lines:
+        r1 = set(range(s1, e1 + 1))
+        r2 = set(range(s2, e2 + 1))
+        
+        if len(r1.intersection(r2)) > 0:
+            overlapping += 1
+
+    return overlapping
 
 
 def main():
